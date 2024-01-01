@@ -38,7 +38,7 @@ const header = async () => {
                             <DropdownMenuLabel>My Account</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem>
-                                <form action="auth/signout" method="POST">
+                                <form action="https://movietube.vercel.app/auth/signout" method="POST">
                                     <button type="submit" >SignOut</button>
                                 </form>
                             </DropdownMenuItem>
