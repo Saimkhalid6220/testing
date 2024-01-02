@@ -1,5 +1,5 @@
-import Image from "next/image"
 
+import Image from "next/image"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 
 const BgPoster = ({poster_path}:{poster_path:string}) => {

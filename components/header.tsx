@@ -38,7 +38,7 @@ const header = async () => {
                             <DropdownMenuLabel>My Account</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem>
-                                <form action="auth/signout" method="POST">
+                                <form action="https://movietube.vercel.app/auth/signout" method="POST">
                                     <button type="submit" >SignOut</button>
                                 </form>
                             </DropdownMenuItem>
@@ -47,7 +47,7 @@ const header = async () => {
 
                 ) : (
 
-                    <Link prefetch={false} href={'/signup'} className="bg-red-500 py-2 px-4 rounded text-white">SignIn</Link>
+                    <Link  href={'/signup'} className="bg-red-500 py-2 px-4 rounded text-white">SignIn</Link>
                 )
                 }
             </div>
