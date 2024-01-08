@@ -1,9 +1,13 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Balsamiq_Sans } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/header'
+import { Weight } from 'lucide-react'
+import { ThemeProvider } from '@/components/theme-provider'
+import { cn } from '@/lib/utils'
+import SearchBars from '@/components/searchBars'
 
-const inter = Inter({ subsets: ['latin'] })
+const balsamiq_Sans = Balsamiq_Sans({subsets:['latin'],weight:['400','700']})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,9 +21,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cn("dark:bg-black bg-white",balsamiq_Sans.className)} >
+        <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem
+        disableTransitionOnChange
+        >
         <Header />
+        <SearchBars/>
         {children}
+        </ThemeProvider>
         </body>
     </html>
   )

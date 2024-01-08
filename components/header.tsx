@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Avatar from "@/components/avatar"
 import { UserIcon } from "lucide-react"
+import { ModeToggle } from "./modeToggler"
 
 
 
@@ -21,8 +22,9 @@ const header = async () => {
     // console.log(session?.user.user_metadata)
     return (
         <nav className="shadow flex justify-between items-center p-4 px-8 overflow-hidden bg-red-500">
-            <div className=""><Link href={'/'}><h1 className="sm:text-3xl text-lg mr-2 text-white font-bold">MovieTube</h1></Link></div>
+            <div className=""><Link href={'/'}><h1 className="sm:text-3xl text-lg mr-2 text-white  font-bold">MovieTube</h1></Link></div>
             <div className="flex items-center space-x-8">
+                <ModeToggle/>
                 {session ? (
                     <DropdownMenu>
                         <DropdownMenuTrigger>

@@ -7,17 +7,8 @@ import {
   } from "@/components/ui/carousel"
   import Autoplay from "embla-carousel-autoplay";
 import BgPoster from "./bg-poster"
-interface movie { 
-    title: string,
-     poster_path: string,
-      id: number, 
-      backdrop_path: string,
-       overview: string,
-        vote_average: number }
-        interface Props{
-                movie:movie[]
-        }
-const carousalPoster =  ({movie}:Props) => {
+import { Props, searchMovies } from "@/typings";
+const carousalPoster =  ({movie}:{movie:searchMovies[]}) => {
     const forPoster = movie.slice(0,3)
   return (
     <div>

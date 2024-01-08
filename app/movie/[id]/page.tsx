@@ -5,7 +5,7 @@ interface movie {
      poster: string, 
        overview: string,
         rating: number }
-const MoviePage = ({searchParams}:{searchParams:movie}) => {
+const MoviePage =async  ({searchParams}:{searchParams:movie}) => {
     // console.log(props)
   return (
     <section >
