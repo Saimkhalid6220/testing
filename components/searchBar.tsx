@@ -41,7 +41,7 @@ export function SearchBar({ searchMovies }: { searchMovies: searchMovies[] }) {
   return (
     <div className="w-full max-w-3xl flex flex-col ">
       <div className="flex items-center space-x-2 ">
-        <Input className="border border-white" type="search" placeholder="Search movies here" value={input} onChange={(e) => {handleInput(e.target.value)}} />
+        <Input className="border dark:border-white border-black" type="search" placeholder="Search movies here" value={input} onChange={(e) => {handleInput(e.target.value)}} />
         <Link href={{
           pathname:`/search/${input}`,
           query:{
