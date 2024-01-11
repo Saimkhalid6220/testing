@@ -1,7 +1,7 @@
 import { getSearchedMovies } from "@/lib/getMovies";
 import Movie from '@/components/movies'
 const SearchPage = async ({searchParams:{keyword}}:{searchParams: {
-    keyword: any;
+    keyword: string;
 }}) => {
     const searchResultls = await getSearchedMovies('search/multi',keyword);
   return (
