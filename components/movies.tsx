@@ -5,7 +5,7 @@ import Link from "next/link";
 const movies = async ({ title, movies }: Props) => {
 for(let i = 0; i<movies.length; i++){
     if(movies[i].known_for || !movies[i].backdrop_path){
-        delete movies[i]
+        delete movies[i];
     }
 }
     return (

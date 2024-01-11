@@ -10,7 +10,7 @@ export const getSearchedMovies = async (type:string,searchItem:string) => {
     const url:URL = new URL(`https://api.themoviedb.org/3/${type}?api_key=0fefc9e3aaf2843acd19108415c44ebd&query=${searchItem}`);
     const res = await fetch(url);
     const data = await res.json();
-    // console.log(data)
+    // console.log(data);
     const movies:searchMovies[]  = data.results;
     return movies;
 }

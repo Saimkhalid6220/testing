@@ -26,7 +26,7 @@ export function SearchBar({ searchMovies }: { searchMovies: searchMovies[] }) {
 
   }]);
   const getDesiredResult = (searchInput:string) => {
-    // console.log(searchInput)
+    // console.log(searchInput);
     const results = searchMovies.filter((item) => {
       return item && item.name && item.name.toLowerCase().includes(searchInput)
     })
