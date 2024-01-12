@@ -3,7 +3,8 @@ import { getPictures } from "@/lib/getMovies";
 import { Props, searchMovies } from "@/typings";
 import Image from "next/image";
 import Link from "next/link";
-const movies = async ({ title, movies }: Props) => {
+const movies =({ title, movies }: Props) => {
+    console.log("hello world")
     console.log(movies)
 // for(let i = 0; i<movies.length; i++){
 //     if(movies[i].known_for  || !movies[i].backdrop_path){
