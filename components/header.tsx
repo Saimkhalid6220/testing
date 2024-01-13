@@ -21,7 +21,7 @@ const header = async () => {
     const { data: { session } } = await supabase.auth.getSession();
     // console.log(session?.user.user_metadata)
     return (
-        <nav className="shadow flex justify-between items-center p-4 px-8 overflow-hidden bg-red-500">
+        <nav className="shadow flex justify-between items-center p-4 px-8 overflow-hidden bg-slate-900">
             <div className=""><Link href={'/'}><h1 className="sm:text-3xl text-lg mr-2 text-white  font-bold">MovieTube</h1></Link></div>
             <div className="flex items-center space-x-8">
                 <ModeToggle/>
@@ -48,8 +48,10 @@ const header = async () => {
                     </DropdownMenu>
 
                 ) : (
-
-                    <Link  href={'/signup'} className="bg-red-500 py-2 px-4 rounded text-white">SignIn</Link>
+                    <>
+                    <Link  href={'/signup'} className="bg-black py-2 px-4 rounded text-white ">SignIn</Link>
+                    <Link  href={'/signup'} className="bg-black py-2 px-4 rounded text-white ">SignUp</Link>
+                    </>
                 )
                 }
             </div>

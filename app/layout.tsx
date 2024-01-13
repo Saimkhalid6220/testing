@@ -2,10 +2,9 @@ import type { Metadata } from 'next'
 import { Balsamiq_Sans } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/header'
-import { Weight } from 'lucide-react'
 import { ThemeProvider } from '@/components/theme-provider'
 import { cn } from '@/lib/utils'
-import SearchBars from '@/components/searchBars'
+import Banner from '@/components/banner'
 
 const balsamiq_Sans = Balsamiq_Sans({subsets:['latin'],weight:['400','700']})
 
@@ -28,8 +27,8 @@ export default function RootLayout({
         enableSystem
         disableTransitionOnChange
         >
+          <Banner/>
         <Header />
-        <SearchBars/>
         {children}
         </ThemeProvider>
         </body>
