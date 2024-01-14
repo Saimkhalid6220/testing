@@ -48,10 +48,10 @@ const header = async () => {
                     </DropdownMenu>
 
                 ) : (
-                    <>
-                    <Link  href={'/signup'} className="bg-black py-2 px-4 rounded text-white ">SignIn</Link>
-                    <Link  href={'/signup'} className="bg-black py-2 px-4 rounded text-white ">SignUp</Link>
-                    </>
+                    <div className="flex space-x-2">
+                    <Link  href={'/signin'} className="bg-black py-2 px-2 rounded text-white border border-white">SignIn</Link>
+                    <Link  href={'/signup'} className="bg-black py-2 px-2  rounded text-white border border-white">SignUp</Link>
+                    </div>
                 )
                 }
             </div>

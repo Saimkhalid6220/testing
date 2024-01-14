@@ -1,7 +1,7 @@
 import {  searchMovies } from "@/typings";
 
 export const getPopularMovies= async(type:string) => {
-    const res = await fetch(`https://api.themoviedb.org/3/${type}?api_key=0fefc9e3aaf2843acd19108415c44ebd`);
+    const res = await fetch(`https://api.themoviedb.org/3/${type}?api_key=0fefc9e3aaf2843acd19108415c44ebd&adult=false`);
     const data = await res.json();
     const movies:searchMovies[] = data.results;
     return movies;

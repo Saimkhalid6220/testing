@@ -45,7 +45,7 @@ for(let i = 0; i<movies.length; i++){
                                                     {product.title?product.title:product.name}
                                                 </Link>
                                             </h3>
-                                            <p className="mt-1 text-sm text-gray-500">{product.overview && product.overview.substring(0,200)}..</p>
+                                            <p className="mt-1 text-sm text-gray-500">{product.overview && product.overview.substring(0,60)}..</p>
                                         </div>
                                     </div>
                                 </div>

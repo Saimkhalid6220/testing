@@ -42,7 +42,7 @@ export function SearchBar({ searchMovies }: { searchMovies: searchMovies[] }) {
     <div className="w-full max-w-3xl flex flex-col ">
       <div className="flex items-center space-x-2 ">
         <Input className="border dark:border-white border-black" type="search" placeholder="Search movies here" value={input} onChange={(e) => {handleInput(e.target.value)}} />
-        <Link href={`/search/${input}`} className="bg-red-500 p-2 rounded"><Search className="text-white" /></Link>
+        <Link href={`/search/${input}`} className="bg-slate-900 p-2 rounded"><Search className="text-white" /></Link>
         </div>
         { input !== ""?(
 

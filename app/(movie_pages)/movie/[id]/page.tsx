@@ -18,7 +18,7 @@ const MoviePage =async  ({searchParams}:{searchParams:movie}) => {
                 </div>            
         </div>
     </div>
-    <div className='relative bottom-1 p-4  shadow-lg space-y-4 w-full bg-slate-800 bg-gradient-to-b from-[rgba(192,188,188,0.38)] text-white'>
+    <div className='relative bottom-1 p-4  shadow-lg space-y-4 w-full bg-slate-900 bg-gradient-to-b from-[rgba(192,188,188,0.38)] text-white'>
         <span className='text-4xl font-bold'>overview</span>
         <p className='text-start'>{searchParams.overview}</p>
     </div>
