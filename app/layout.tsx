@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={cn("dark:bg-black bg-white",balsamiq_Sans.className)} >
         <ThemeProvider
         attribute="class"
-        defaultTheme="dark"
+        defaultTheme="system"
         enableSystem
         disableTransitionOnChange
         >

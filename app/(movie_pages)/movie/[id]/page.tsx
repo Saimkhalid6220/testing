@@ -1,3 +1,4 @@
+import DownloadButton from '@/components/DownloadButton'
 import BgPoster from '@/components/bg-poster'
 import React from 'react'
 interface movie { 
@@ -22,6 +23,7 @@ const MoviePage =async  ({searchParams}:{searchParams:movie}) => {
         <span className='text-4xl font-bold'>overview</span>
         <p className='text-start'>{searchParams.overview}</p>
     </div>
+    <DownloadButton/>
     </section>
   )
 }
