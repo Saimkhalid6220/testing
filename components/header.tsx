@@ -31,7 +31,7 @@ const header = async () => {
                             {session?.user.user_metadata.avatar_url ? (
                                 <Avatar img={session?.user.user_metadata.avatar_url} />
                             ) : (
-                                <UserIcon />
+                                <UserIcon className="text-white"/>
                             )
 
                             }
