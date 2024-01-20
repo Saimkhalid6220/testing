@@ -17,7 +17,7 @@ for(let i = 0; i<movies.length; i++){
 
                         <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 ">
                             { movies.map((product: searchMovies) => (
-                                <div key={product.id} className="group relative">
+                                <div key={product.id} className="group relative ">
                                     <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                                         <Image
                                             width={100}
@@ -35,9 +35,10 @@ for(let i = 0; i<movies.length; i++){
                                                         pathname: '/movie/' + product.id.toString(),
                                                         query: {
                                                             title: product.title?product.title:product.name,
-                                                            poster: product.backdrop_path,
+                                                            backdrop_path: product.backdrop_path,
                                                             overview: product.overview,
-                                                            rating: product.vote_average
+                                                            vote_average: product.vote_average.toFixed(1),
+                                                            genre_ids: product.genre_ids
                                                         }
                                                     }
                                                 }>

@@ -3,6 +3,10 @@ export interface Props {
     title: string,
     movies: searchMovies[]
 }
+export interface Genres {
+    id: number,
+    name: string
+}
 export interface searchMovies {
     adult:false,
     backdrop_path:string,

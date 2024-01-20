@@ -1,21 +1,29 @@
 import DownloadButton from '@/components/DownloadButton'
 import BgPoster from '@/components/bg-poster'
+import { getGenres } from '@/lib/getMovies'
+import {  Genres, searchMovies } from '@/typings'
 import React from 'react'
-interface movie { 
-    title: string,
-     poster: string, 
-       overview: string,
-        rating: number }
-const MoviePage =async  ({searchParams}:{searchParams:movie}) => {
-    // console.log(props)
+const MoviePage =async  ({searchParams}:{searchParams:searchMovies}) => {
+  const genres = await getGenres();
+ console.log(searchParams.vote_average)
   return (
     <section >
     <div className='relative '>
-        <BgPoster poster_path={searchParams.poster}/>
-        <div className='absolute flex flex-col justify-center items-start z-10 top-0 text-white text-bold h-full w-full'>
-                <div className='max-w-3xl ml-8 space-y-2 p-2 hidden sm:block'>
+        <BgPoster poster_path={searchParams.backdrop_path}/>
+        <div className='absolute flex flex-col justify-end items-start z-10 top-0 text-white text-bold h-full w-full'>
+                <div className='max-w-3xl ml-8 space-y-2 px-2 py-4 sm:block'>
                     <h2 className='text-2xl md:text-xl'>{searchParams.title}</h2>
-                    <p className=' text-sm'>{searchParams.overview}</p>
+                    <p className='text-white text-sm flex space-x-2'>
+                      { searchParams.genre_ids.map((id:number) => (
+                        <span>
+                          {genres && genres.find((genre:Genres) =>genre.id == id)?.name},
+                        </span> 
+                    ))}
+                    </p>
+                    <p>
+                      IMDB : {searchParams.vote_average}
+                    </p>
+                    <p className='hidden md:block text-sm'>{searchParams.overview}</p>
                 </div>            
         </div>
     </div>

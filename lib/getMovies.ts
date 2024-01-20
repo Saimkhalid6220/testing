@@ -1,4 +1,4 @@
-import {  searchMovies } from "@/typings";
+import {  Genres, searchMovies } from "@/typings";
 
 export const getPopularMovies= async(type:string) => {
     const res = await fetch(`https://api.themoviedb.org/3/${type}?api_key=0fefc9e3aaf2843acd19108415c44ebd&adult=false`);
@@ -21,3 +21,10 @@ export const getPictures = (poster_path:string,backdrop_path:string) => {
     }
         return `https://image.tmdb.org/t/p/original${backdrop_path}` 
 }   
+
+export const getGenres = async () => {
+    const res = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=0fefc9e3aaf2843acd19108415c44ebd&language=en');
+    const data = await res.json();
+    const movies:Genres[] = data.genres;
+    return movies;
+}

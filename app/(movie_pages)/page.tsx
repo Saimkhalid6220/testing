@@ -1,16 +1,17 @@
 
-import { SearchBar } from '@/components/searchBar';
 import Movies from '@/components/movies'
 import CarousalPoster from '@/components/carousalPoster';
-import { getPopularMovies, getSearchedMovies } from '@/lib/getMovies';
+import { getPopularMovies, getGenres } from '@/lib/getMovies';
+import { searchMovies } from '@/typings';
 
  async function  Home() {
   const popularMovies = await getPopularMovies('movie/popular')
   const popularTv = await getPopularMovies('tv/popular')
+  const Genres = await getGenres();
 //   const searchMovies = await getSearchedMovies('search/multi','a');
   return (
    <main>
-      <CarousalPoster movie = {popularMovies}/>
+      <CarousalPoster movie = {popularMovies} genres = {Genres}/>
        <div className='flex justify-center p-4'>
     {/* <SearchBar searchMovies = {searchMovies}/> */}
     </div>

@@ -7,8 +7,8 @@ import {
   } from "@/components/ui/carousel"
   import Autoplay from "embla-carousel-autoplay";
 import BgPoster from "./bg-poster"
-import { Props, searchMovies } from "@/typings";
-const carousalPoster =  ({movie}:{movie:searchMovies[]}) => {
+import { Genres, searchMovies } from "@/typings";
+const carousalPoster =  ({movie,genres}:{movie:searchMovies[],genres:Genres[]}) => {
     const forPoster = movie.slice(0,3)
   return (
     <div>
@@ -21,14 +21,22 @@ const carousalPoster =  ({movie}:{movie:searchMovies[]}) => {
       ]}
     >
   <CarouselContent>
-    {forPoster.map((item:any) => (
+    {forPoster.map((item:searchMovies) => (
 <>
     <CarouselItem >
         <BgPoster poster_path={item.backdrop_path}/>
-        <div  className='absolute flex flex-col justify-center items-start z-10 top-0 text-white text-bold h-full w-full'>
-                <div key={item.id} className='max-w-3xl ml-8 space-y-2 p-2 hidden sm:block'>
-                    <h2 className='text-2xl md:text-xl'>{item.title}</h2>
-                    <p className=' text-sm'>{item.overview}</p>
+        <div  className='absolute  flex flex-col justify-end items-start z-10 top-0 text-white text-bold h-full w-full'>
+                <div key={item.id} className='max-w-3xl ml-8 space-y-2  px-2 py-4'>
+                    <h2 className='text-2xl md:text-4xl'>{item.title}</h2>
+                    <p className=' text-sm hidden md:block'>{item.overview}</p>
+                    <p className="text-sm text-white flex space-x-2">
+                      {
+                        item.genre_ids.map((id:number) =>(
+                          <span>{genres && genres.find((genre:Genres)=>genre.id===id)?.name}</span>
+                        ))
+                      }
+                    </p>
+                    <p className="text-sm text-white">IMDB : {item.vote_average && item.vote_average.toFixed(1)}</p>
                 </div>            
         </div>
         </CarouselItem>
