@@ -5,7 +5,7 @@ import {  Genres, searchMovies } from '@/typings'
 import React from 'react'
 const MoviePage =async  ({searchParams}:{searchParams:searchMovies}) => {
   const genres = await getGenres();
- console.log(searchParams.vote_average)
+//  console.log(searchParams.vote_average)
   return (
     <section >
     <div className='relative '>
@@ -14,8 +14,8 @@ const MoviePage =async  ({searchParams}:{searchParams:searchMovies}) => {
                 <div className='max-w-3xl ml-8 space-y-2 px-2 py-4 sm:block'>
                     <h2 className='text-2xl md:text-xl'>{searchParams.title}</h2>
                     <p className='text-white text-sm flex space-x-2'>
-                      { searchParams.genre_ids.map((id:number) => (
-                        <span>
+                      { searchParams.genre_ids.map((id:number,index:number) => (
+                        <span key={index}>
                           {genres && genres.find((genre:Genres) =>genre.id == id)?.name},
                         </span> 
                     ))}

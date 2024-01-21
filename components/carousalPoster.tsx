@@ -31,8 +31,8 @@ const carousalPoster =  ({movie,genres}:{movie:searchMovies[],genres:Genres[]}) 
                     <p className=' text-sm hidden md:block'>{item.overview}</p>
                     <p className="text-sm text-white flex space-x-2">
                       {
-                        item.genre_ids.map((id:number) =>(
-                          <span>{genres && genres.find((genre:Genres)=>genre.id===id)?.name}</span>
+                        item.genre_ids.map((id:number,index:number) =>(
+                          <span key={index}>{genres && genres.find((genre:Genres)=>genre.id===id)?.name}</span>
                         ))
                       }
                     </p>
