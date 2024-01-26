@@ -4,6 +4,7 @@ import { Search } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 import { searchMovies } from "@/typings"
+import { Button } from "./ui/button"
 
 export function SearchBar({ searchMovies }: { searchMovies: searchMovies[] }) {
   const [input, setInput] = useState("")
@@ -41,8 +42,17 @@ export function SearchBar({ searchMovies }: { searchMovies: searchMovies[] }) {
   return (
     <div className="w-full max-w-3xl flex flex-col ">
       <div className="flex items-center space-x-2 ">
+        <form action={`/search/${input}`} className="flex items-center space-x-2 w-full">
         <Input className="border dark:border-white border-black" type="search" placeholder="Search movies here" value={input} onChange={(e) => {handleInput(e.target.value)}} />
-        <Link href={`/search/${input}`} className="bg-slate-900 p-2 rounded"><Search className="text-white" /></Link>
+        {input ?(
+        <Button type="submit" className="bg-slate-900 border p-2 rounded">
+          <Search className="text-white"/></Button>
+
+        ):(
+        <Button type="button" className="bg-slate-300 p-2 rounded cursor-not-allowed hover:bg-slate-200">
+          <Search className="text-white"/></Button>
+        )}
+        </form>
         </div>
         { input !== ""?(
 
