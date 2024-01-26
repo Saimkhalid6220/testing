@@ -1,5 +1,6 @@
 import { getPictures } from "@/lib/getMovies";
 import { Props, searchMovies } from "@/typings";
+import { BookmarkPlus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 const movies =({ title, movies }: Props) => {
@@ -18,6 +19,7 @@ for(let i = 0; i<movies.length; i++){
                         <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 ">
                             { movies.map((product: searchMovies) => (
                                 <div key={product.id} className="group relative ">
+                                        <BookmarkPlus className="top-[-8px] absolute right-4 text-[100px text-white h-8 w-8 bg-black  rounded p-1 "/>
                                     <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                                         <Image
                                             width={100}
