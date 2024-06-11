@@ -7,6 +7,7 @@ import { searchMovies } from "@/typings"
 import { Button } from "./ui/button"
 
 export function SearchBar({ searchMovies }: { searchMovies: searchMovies[] }) {
+  var hahah = "hoahaha"
   const [input, setInput] = useState("")
   const [results ,setResults] = useState<searchMovies[]>([{
     adult:false,
