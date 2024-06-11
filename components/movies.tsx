@@ -10,9 +10,7 @@ const movies = ({ title, movies }: Props) => {
       delete movies[i]
     }
   }
-  function addBookmark(){
-    console.log("bookmark added")
-  }
+
   return (
     <div>
       <div>
@@ -25,7 +23,6 @@ const movies = ({ title, movies }: Props) => {
             <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 ">
               {movies.map((product: searchMovies) => (
                 <div key={product.id} className="group relative ">
-                  <BookmarkPlus onClick={()=>addBookmark()} className="cursor-pointer z-10 top-[-8px] absolute right-4 text-[100px text-white h-8 w-8 bg-black  rounded p-1 " />
                   <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                     <Image
                       width={100}
@@ -54,6 +51,7 @@ const movies = ({ title, movies }: Props) => {
                               overview: product.overview,
                               vote_average:product.vote_average && product.vote_average.toFixed(1),
                               genre_ids: product.genre_ids,
+                              id:product.id.toString(),
                             },
                           }}
                         >

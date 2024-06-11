@@ -5,6 +5,7 @@ import Header from '@/components/header'
 import { ThemeProvider } from '@/components/theme-provider'
 import { cn } from '@/lib/utils'
 import Banner from '@/components/banner'
+import { Toaster } from "@/components/ui/toaster"
 
 const balsamiq_Sans = Balsamiq_Sans({subsets:['latin'],weight:['400','700']})
 
@@ -31,6 +32,7 @@ export default function RootLayout({
         <Header />
         {children}
         </ThemeProvider>
+        <Toaster />
         </body>
     </html>
   )

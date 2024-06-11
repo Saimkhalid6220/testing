@@ -2,10 +2,13 @@ import DownloadButton from '@/components/DownloadButton'
 import BgPoster from '@/components/bg-poster'
 import { getGenres } from '@/lib/getMovies'
 import {  Genres, searchMovies } from '@/typings'
+import { stringify } from 'querystring'
 import React from 'react'
 const MoviePage =async  ({searchParams}:{searchParams:searchMovies}) => {
   const genres = await getGenres();
-//  console.log(searchParams.genre_ids)
+  // const genreIds: number[] = searchParams.genre_ids 
+
+  console.log(typeof searchParams.genre_ids,2)
   return (
     <section >
     <div className='relative '>
@@ -14,7 +17,7 @@ const MoviePage =async  ({searchParams}:{searchParams:searchMovies}) => {
                 <div className='max-w-3xl ml-8 space-y-2 px-2 py-4 sm:block'>
                     <h2 className='text-2xl md:text-xl'>{searchParams.title}</h2>
                     <p className='text-white text-sm flex space-x-2'>
-                      {searchParams.genre_ids.length > 2 ? searchParams.genre_ids.map((id:number,index:number) => (
+                      {searchParams.genre_ids?.length > 2 && Array.isArray(searchParams.genre_ids) ? searchParams.genre_ids.map((id:number,index:number) => (
                         <span key={index}>
                           {genres && genres.find((genre:Genres) =>genre.id == id)?.name},
                         </span> 
@@ -31,7 +34,7 @@ const MoviePage =async  ({searchParams}:{searchParams:searchMovies}) => {
         <span className='text-4xl font-bold'>overview</span>
         <p className='text-start'>{searchParams.overview}</p>
     </div>
-    <DownloadButton/>
+    <DownloadButton id = {(searchParams.id)?.toString()}/>
     </section>
   )
 }

@@ -11,7 +11,7 @@ export interface searchMovies {
     adult:false,
     backdrop_path:string,
     first_air_date:string,
-    genre_ids:number[] ,
+    genre_ids:Array<number> ,
     id:number,
     media_type:string,
     name:string,
@@ -25,9 +25,16 @@ export interface searchMovies {
     vote_count:number,
     title?:string | null,
     known_for?:any
+    bookMarked:false | true;
 
 
 
 
 
 }
+// export interface Database {
+
+//         data:{
+
+//         }
+//     }

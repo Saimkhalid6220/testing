@@ -17,7 +17,7 @@ export async function middleware(req: NextRequest) {
   // }
 
 //   // if user is  signed in and the current path is not /dashboard redirect the user to /
-  if (user?.email !== 'saimkhalid6220@gmail.com' && req.nextUrl.pathname === '/dashboard') {
+  if (user?.email !== ('saimkhalid6220@gmail.com' || 'Movietubeworkers@gmail.com') && req.nextUrl.pathname === '/dashboard') {
     return NextResponse.redirect(new URL('/', req.url))
   }
 
@@ -25,5 +25,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: [ '/dashboard'],
+  // matcher: [ '/dashboard'],
 }
