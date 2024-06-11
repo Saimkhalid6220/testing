@@ -59,6 +59,7 @@ const movies = ({ title, movies }: Props) => {
                             aria-hidden="true"
                             className="absolute inset-0 "
                           />
+                          
                           {product.title ? product.title : product.name}
                         </Link>
                       </h3>
