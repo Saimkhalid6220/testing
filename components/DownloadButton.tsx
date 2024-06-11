@@ -49,6 +49,7 @@ const DownloadButton = ({id}:{id:string}) => {
     };
   return (
         <>
+        <p className="p-2 bg-red-500 text-black">this is id : {id}</p>
       {error && <p className="text-black dark:text-white text-center"> {error}</p>}
       <div className="text-center">Movie Links</div>
       {Movie ? (
