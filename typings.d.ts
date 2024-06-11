@@ -25,7 +25,6 @@ export interface searchMovies {
     vote_count:number,
     title?:string | null,
     known_for?:any
-    bookMarked:false | true;
 
 
 
