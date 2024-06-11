@@ -5,6 +5,7 @@ import {  Genres, searchMovies } from '@/typings'
 import { stringify } from 'querystring'
 import React from 'react'
 const MoviePage =async  ({searchParams}:{searchParams:searchMovies}) => {
+  const haha = "haha"
   const genres = await getGenres();
   // const genreIds: number[] = searchParams.genre_ids 
 
