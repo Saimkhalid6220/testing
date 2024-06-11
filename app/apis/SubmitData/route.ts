@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import supabase from '@/lib/config';
 
 export async function POST(req: NextRequest) {
+  const hehe = "hehe"
   try {
     const { fullName, dlink } = await req.json();
 

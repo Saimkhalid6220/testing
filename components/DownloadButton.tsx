@@ -10,7 +10,6 @@ interface MovieLink {
 }
 
 const DownloadButton = ({id}:{id:string}) => {
-  console.log(id)
   const [Movie, setMovie] = useState<MovieLink | null>(null);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {

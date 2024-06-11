@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import supabase from '@/lib/config';
 
 export async function GET(req: NextRequest) {
+  const hehe = "hhe"
   const { searchParams } = new URL(req.url);
   const id = searchParams.get('id');
 
