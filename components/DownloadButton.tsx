@@ -21,6 +21,7 @@ const DownloadButton = ({id}:{id:string}) => {
         if (response.ok) {
           console.log(result)
           setMovie(result.data[0]);
+          console.log("its working i guess")
           setError(null);
         } else {
           setMovie(null);
@@ -36,7 +37,7 @@ const DownloadButton = ({id}:{id:string}) => {
     if (id) {
       fetchUser();
     }
-  });
+  },[id]);
     const downloadFile = (dlink:string) => {
       const link = document.createElement('a');
       link.href = `https://drive.google.com/uc?export=download&id=${dlink}`;
