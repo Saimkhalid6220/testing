@@ -59,10 +59,11 @@ const movies = ({ title, movies }: Props) => {
                             aria-hidden="true"
                             className="absolute inset-0 "
                           />
-                          
+
                           {product.title ? product.title : product.name}
                         </Link>
                       </h3>
+                      <p>this is from movies component : {product.id}</p>
                       <p className="mt-1 text-sm text-gray-500">
                         {product.overview && product.overview.substring(0, 60)}
                         ..
