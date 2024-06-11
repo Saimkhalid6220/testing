@@ -63,7 +63,7 @@ const movies = ({ title, movies }: Props) => {
                           {product.title ? product.title : product.name}
                         </Link>
                       </h3>
-                      <p>this is from movies component : {product.id}</p>
+                      <p>this is from movies component : {product.id.toString()}</p>
                       <p className="mt-1 text-sm text-gray-500">
                         {product.overview && product.overview.substring(0, 60)}
                         ..
