@@ -39,7 +39,8 @@ const DownloadButton = (params:any) => {
       fetchUser();
     }
   },[params.l_id]);
-  console.log("this is some shit"+params.l_id)
+  console.log("this is some shit"+ params.l_id )
+  console.dir( params)
     const downloadFile = (dlink:string) => {
       const link = document.createElement('a');
       link.href = `https://drive.google.com/uc?export=download&id=${dlink}`;
