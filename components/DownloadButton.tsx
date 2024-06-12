@@ -9,13 +9,13 @@ interface MovieLink {
   download_link: string;
 }
 
-const DownloadButton = ({id}:{id:string}) => {
+const DownloadButton = ({l_id}:{l_id:string}) => {
   const [Movie, setMovie] = useState<MovieLink | null>(null);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch(`/apis/GetData?id=${id}`);
+        const response = await fetch(`/apis/GetData?id=${l_id}`);
         const result = await response.json();
 
         if (response.ok) {
@@ -34,11 +34,11 @@ const DownloadButton = ({id}:{id:string}) => {
       }
     };
 
-    if (id) {
+    if (l_id) {
       fetchUser();
     }
-  },[id]);
-  console.log(id)
+  },[l_id]);
+  console.log(l_id)
     const downloadFile = (dlink:string) => {
       const link = document.createElement('a');
       link.href = `https://drive.google.com/uc?export=download&id=${dlink}`;
@@ -49,7 +49,7 @@ const DownloadButton = ({id}:{id:string}) => {
     };
   return (
         <>
-        <p className="p-2 bg-red-500 text-black">this is id : {id}</p>
+        <p className="p-2 bg-red-500 text-black">this is id : {l_id}</p>
       {error && <p className="text-black dark:text-white text-center"> {error}</p>}
       <div className="text-center">Movie Links</div>
       {Movie ? (

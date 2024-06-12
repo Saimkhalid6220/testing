@@ -36,7 +36,7 @@ const MoviePage =async  ({searchParams}:{searchParams:searchMovies}) => {
         <p className='text-start'>{searchParams.overview}</p>
         <p>this is movie page : {searchParams.id}</p>
     </div>
-    <DownloadButton id = {(searchParams.id)?.toString()}/>
+    <DownloadButton l_id = {(searchParams.id)?.toString()}/>
     </section>
   )
 }
