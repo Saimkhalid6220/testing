@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
     const { data, error } = await supabase
       .from('DownloadLinks') // replace 'users' with your actual table name
       .insert([
-        { full_name: fullName, download_link:dlink.split('/').slice(-2, -1)[0]; }
+        { full_name: fullName, download_link:dlink.split('/').slice(-2, -1)[0] }
       ]);
 
     if (error) {
