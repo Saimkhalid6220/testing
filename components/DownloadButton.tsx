@@ -16,6 +16,7 @@ const DownloadButton = ({l_id}:{l_id:string}) => {
     const fetchUser = async () => {
       try {
         const response = await fetch(`/apis/GetData?id=${l_id}`);
+        console.log("not a shit"+ response)
         const result = await response.json();
 
         if (response.ok) {
