@@ -12,7 +12,7 @@ export interface searchMovies {
     backdrop_path:string,
     first_air_date:string,
     genre_ids:Array<number> ,
-    id:string,
+    id:number,
     media_type:string,
     name:string,
     origin_country:string[],
