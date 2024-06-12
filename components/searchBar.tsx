@@ -25,6 +25,7 @@ export function SearchBar({ searchMovies }: { searchMovies: searchMovies[] }) {
     poster_path:"",
     vote_average:0,
     vote_count:0,
+    l_id:"",
 
   }]);
   const getDesiredResult = (searchInput:string) => {
