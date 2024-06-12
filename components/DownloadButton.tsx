@@ -9,13 +9,13 @@ interface MovieLink {
   download_link: string;
 }
 
-const DownloadButton = ({l_id}:{l_id:string}) => {
+const DownloadButton = (params:any) => {
   const [Movie, setMovie] = useState<MovieLink | null>(null);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch(`/apis/GetData?id=${l_id}`);
+        const response = await fetch(`/apis/GetData?id=${params.l_id}`);
         console.log("not a shit"+ response)
         const result = await response.json();
 
@@ -35,11 +35,11 @@ const DownloadButton = ({l_id}:{l_id:string}) => {
       }
     };
 
-    if (l_id) {
+    if (params.l_id) {
       fetchUser();
     }
-  },[l_id]);
-  console.log("this is some shit"+l_id)
+  },[params.l_id]);
+  console.log("this is some shit"+params.l_id)
     const downloadFile = (dlink:string) => {
       const link = document.createElement('a');
       link.href = `https://drive.google.com/uc?export=download&id=${dlink}`;
@@ -50,7 +50,7 @@ const DownloadButton = ({l_id}:{l_id:string}) => {
     };
   return (
         <>
-        <p className="p-2 bg-red-500 text-black">this is id : {l_id}</p>
+        <p className="p-2 bg-red-500 text-black">this is id : {params.l_id}</p>
       {error && <p className="text-black dark:text-white text-center"> {error}</p>}
       <div className="text-center">Movie Links</div>
       {Movie ? (
