@@ -51,7 +51,6 @@ const DownloadButton = (params:any) => {
     };
   return (
         <>
-        <p className="p-2 bg-red-500 text-black">this is id : {params.l_id}</p>
       {error && <p className="text-black dark:text-white text-center"> {error}</p>}
       <div className="text-center">Movie Links</div>
       {Movie ? (
