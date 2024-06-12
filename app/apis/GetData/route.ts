@@ -5,6 +5,7 @@ import supabase from '@/lib/config';
 export async function GET(req: NextRequest) {
   const hehe = "hhe"
   const { searchParams } = new URL(req.url);
+  console.log(searchParams)
   const id = searchParams.get('id');
 
   if (!id) {
