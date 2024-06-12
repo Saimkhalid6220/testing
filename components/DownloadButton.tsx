@@ -15,7 +15,6 @@ const DownloadButton = (params:any) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        l_id = l_id.split('/').slice(-2, -1)[0];
         const response = await fetch(`/apis/GetData?id=${params.l_id}`);
         console.log("not a shit"+ response)
         const result = await response.json();
