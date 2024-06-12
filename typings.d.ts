@@ -12,7 +12,7 @@ export interface searchMovies {
     backdrop_path:string,
     first_air_date:string,
     genre_ids:Array<number> ,
-    id:number,
+    id:string,
     media_type:string,
     name:string,
     origin_country:string[],
@@ -24,7 +24,8 @@ export interface searchMovies {
     vote_average:number,
     vote_count:number,
     title?:string | null,
-    known_for?:any
+    known_for?:any,
+    l_id:string;
 
 
 
