@@ -38,7 +38,7 @@ const DownloadPage = ({searchParams}:{searchParams:{id:string,media_type:string}
       <h1 className="text-4xl font-bold text-center text-gray-800 my-8">
         TV Show Seasons
       </h1>
-      <span>{ JSON.stringify(Movie.season_1)}</span>
+      <span>{ JSON.stringify(Movie.season_1)}here it is</span>
       {Object.keys(Movie).map((season:string, index:number) => (
         <div key={index} className="bg-white shadow-lg rounded-lg p-6 mb-6">
           <h2 className="text-2xl font-semibold text-gray-700 mb-4">
