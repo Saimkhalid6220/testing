@@ -20,9 +20,9 @@ const DownloadButton = (params:any) => {
         const result = await response.json();
 
         if (response.ok) {
-          console.log(result.data[0])
+          // console.log(result.data[0])
           setMovie(result.data[0]);
-          console.log("its working i guess")
+          // console.log("its working i guess")
           setError(null);
         } else {
           setMovie(null);

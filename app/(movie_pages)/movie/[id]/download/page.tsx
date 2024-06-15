@@ -35,9 +35,9 @@ const DownloadPage = ({searchParams}:{searchParams:{id:string,media_type:string}
         const result = await response.json();
 
         if (response.ok) {
-          console.log(result.data[0].ep_link)
+          // console.log(result.data[0].ep_link)
           setMovie(result.data[0].ep_link);
-          console.log("its working i guess")
+          // console.log("its working i guess")
           setError(null);
         } else {
           // setMovie(null);
@@ -62,7 +62,6 @@ const DownloadPage = ({searchParams}:{searchParams:{id:string,media_type:string}
       <h1 className="text-4xl font-bold text-center text-gray-800 my-8">
         TV Show Seasons
       </h1>
-      <span>{ JSON.stringify(Movie.season_1)}here it is {searchParams.id},{idFromUrl}</span>
       {Object.keys(Movie).map((season:string, index:number) => (
         <div key={index} className="bg-white shadow-lg rounded-lg p-6 mb-6">
           <h2 className="text-2xl font-semibold text-gray-700 mb-4">
@@ -74,7 +73,7 @@ const DownloadPage = ({searchParams}:{searchParams:{id:string,media_type:string}
               <p key={index} className="text-red-600 text-center font-bold">
                 {episode.name}
               </p>
-                <DownloadButton l_id = {searchParams.id} media_type = {searchParams.media_type} series_Link = {episode.link}/>
+                <DownloadButton l_id = {idFromUrl} media_type = {searchParams.media_type} series_Link = {episode.link}/>
                 </>
             ))}
           </ul>
