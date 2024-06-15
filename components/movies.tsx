@@ -52,6 +52,7 @@ const movies = ({ title, movies }: Props) => {
                               vote_average:product.vote_average && product.vote_average.toFixed(1),
                               genre_ids: product.genre_ids,
                               l_id:product.id,
+                              media_type:product.media_type
                             },
                           }}
                         >

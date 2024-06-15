@@ -3,6 +3,7 @@ import { AlertTriangle, User } from "lucide-react"
 import { ArrowDownToLine } from "lucide-react"
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
+import Link from "next/link";
 
 interface MovieLink {
   full_name: string;
@@ -15,12 +16,11 @@ const DownloadButton = (params:any) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch(`/apis/GetData?id=${params.l_id}`);
-        console.log("not a shit"+ response)
+        const response = await fetch(`/apis/GetData?id=${params.l_id}&media_type=${params.media_type}`);
         const result = await response.json();
 
         if (response.ok) {
-          console.log(result)
+          console.log(result.data[0])
           setMovie(result.data[0]);
           console.log("its working i guess")
           setError(null);
@@ -39,8 +39,6 @@ const DownloadButton = (params:any) => {
       fetchUser();
     }
   },[params.l_id]);
-  console.log("this is some shit"+ params.l_id )
-  console.dir( params)
     const downloadFile = (dlink:string) => {
       const link = document.createElement('a');
       link.href = `https://drive.google.com/uc?export=download&id=${dlink}`;
@@ -49,20 +47,30 @@ const DownloadButton = (params:any) => {
       link.click();
       document.body.removeChild(link);
     };
+    if(params.media_type == 'tv' && Movie){
+      Movie.download_link = params.series_Link
+      // console.log(Movie.download_link)
+    }
   return (
         <>
       {error && <p className="text-black dark:text-white text-center"> {error}</p>}
-      <div className="text-center">Movie Links</div>
       {Movie ? (
 
         
         <div className="m-4 text-center p-4 dark:bg-slate-900 bg-slate-200 dark:border dark:rounded-md dark:border-slate-100 flex justify-center items-center flex-col space-y-2">
         <h3 className="capitalize text-black dark:text-white">Download your movie</h3>
         <p className="text-yellow-500 text-sm capitalize flex  items-center"><AlertTriangle className="text-sm mx-1"/>NOTE: the download link may redirect you to other website to download movies sucessfully </p>
-        <button onClick={(e) => downloadFile(Movie.download_link)} className="dark:bg-black dark:border dark:border-slate-200 bg-slate-900 text-white py-2 px-4 rounded-md capitalize my-4 flex items-center">Download <ArrowDownToLine className="mx-1"/></button>
+        {window.location.pathname == `/movie/${params.l_id}/download` || params.media_type == 'movie' ?(  
+          
+          <button onClick={(e) => downloadFile(Movie.download_link)} className="dark:bg-black dark:border dark:border-slate-200 bg-slate-900 text-white py-2 px-4 rounded-md capitalize my-4 flex items-center">Download <ArrowDownToLine className="mx-1"/></button>
+          ):(
+
+            <Link href={{pathname:`/movie/${params.l_id}/download`,query:{id:params.l_id,media_type:params.media_type}}} className="dark:bg-black dark:border dark:border-slate-200 bg-slate-900 text-white py-2 px-4 rounded-md capitalize my-4 flex items-center">Go TO Download <ArrowDownToLine className="mx-1"/></Link>
+            ) 
+        }
     </div>
-        ):<Loading/>
-    }
+         ):<Loading/>
+    } 
         </>
   )
 }

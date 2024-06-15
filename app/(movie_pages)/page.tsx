@@ -9,6 +9,14 @@ import { addMovie, getById } from '../signin/helperfunctions/getData/dataFunctio
  async function  Home() {
   const popularMovies = await getPopularMovies('movie/popular')
   const popularTv = await getPopularMovies('tv/popular')
+  const updatedpopularTv =  popularTv.map((obj) => ({
+    ...obj,
+    media_type:"tv"
+  }))
+   const updatedpopularMovies =  popularMovies.map((obj) => ({
+    ...obj,
+    media_type:"movie"
+  }))
   const Genres = await getGenres(); 
 
 
@@ -27,8 +35,8 @@ import { addMovie, getById } from '../signin/helperfunctions/getData/dataFunctio
        <div className='flex justify-center p-4'>
     {/* <SearchBar searchMovies = {searchMovies}/> */}
     </div>
-    <Movies title = 'popular movies'     movies = {popularMovies}/>
-    <Movies title = 'popular tv series'  movies ={popularTv}/>
+    <Movies title = 'popular movies'     movies = {updatedpopularMovies}/>
+    <Movies title = 'popular tv series'  movies ={updatedpopularTv}/>
    </main>
   )
 }

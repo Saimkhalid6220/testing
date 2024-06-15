@@ -7,6 +7,7 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   console.log(searchParams)
   const id = searchParams.get('id');
+  const media_type = searchParams.get('media_type');
 
   if (!id) {
     return NextResponse.json({ error: 'id is required' }, { status: 400 });
@@ -16,7 +17,8 @@ export async function GET(req: NextRequest) {
     const { data, error } = await supabase
       .from('DownloadLinks') // replace 'users' with your actual table name
       .select('*')
-      .eq('full_name', id); // replace 'full_name' with the appropriate column name
+      .eq('full_name', id) // replace 'full_name' with the appropriate column name
+      .eq('media_type', media_type); // replace 'full_name' with the appropriate column name
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });

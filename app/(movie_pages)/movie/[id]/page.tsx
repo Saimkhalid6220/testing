@@ -35,7 +35,7 @@ const MoviePage =async  ({searchParams}:{searchParams:searchMovies}) => {
         <span className='text-4xl font-bold'>overview</span>
         <p className='text-start'>{searchParams.overview}</p>
     </div>
-    <DownloadButton l_id = {searchParams.l_id}/>
+    <DownloadButton l_id = {searchParams.l_id} media_type = {searchParams.media_type}/>
     </section>
   )
 }
