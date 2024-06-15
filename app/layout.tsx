@@ -28,7 +28,6 @@ export default function RootLayout({
         enableSystem
         disableTransitionOnChange
         >
-          <Banner/>
         <Header />
         {children}
         </ThemeProvider>
