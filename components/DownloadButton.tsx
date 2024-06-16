@@ -39,14 +39,27 @@ const DownloadButton = (params:any) => {
       fetchUser();
     }
   },[params.l_id]);
-    const downloadFile = (dlink:string) => {
+    const downloadFile = async (dlink:string) => {
       dlink = dlink.split('/d/')[1]?.split('/')[0]
-      const link = document.createElement('a');
-      link.href = `https://drive.google.com/uc?export=download&id=${dlink}`;
-      link.setAttribute('download', 'file');
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      try {
+        const response = await fetch(`/apis/Download?fileId=${dlink}`);
+        if (!response.ok) {
+          throw new Error(`Failed to download file, status ${response.status}`);
+        }
+  
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = dlink;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      } catch (error) {
+        console.error('Error downloading file:', error);
+        // Handle error (e.g., show error message to user)
+      }
+    
     };
     if(params.media_type == 'tv' && Movie){
       Movie.download_link = params.series_Link
