@@ -1,3 +1,4 @@
+// pages/api/download.ts
 import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
 import supabase from '@/lib/config';// Adjust the path to your Supabase initialization file
@@ -12,14 +13,14 @@ export async function GET(req: NextRequest) {
     return new NextResponse(JSON.stringify({ error: 'File ID is required' }), { status: 400 });
   }
 
-  // Obtain user's access token from Supabase session
-  const user = supabase.auth.getUser();
-  const access_token =(await supabase.auth.getSession()).data.session?.access_token;
-  if (!access_token) {
-    return new NextResponse(JSON.stringify({ error: `User is not authenticated and acess_token is : ${access_token}` }), { status: 401 });
+  // Obtain user's session from Supabase
+  const { data: { session } } = await supabase.auth.getSession();
+
+  if (!session || !session.provider_token) {
+    return new NextResponse(JSON.stringify({ error: `User is not authenticated, acess token : ${session?.provider_token}` }), { status: 401 });
   }
 
-  const accessToken = access_token;
+  const accessToken = session.provider_token;
 
   try {
     const response = await axios({
