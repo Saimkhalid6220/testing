@@ -19,11 +19,11 @@ export async function GET(req: NextRequest) {
   // Obtain user's session from Supabase
   const { data: { session } } = await supabase.auth.getSession();
 
-  if (!session || !session.provider_token) {
+  if (!session || !session.access_token) {
     return new NextResponse(JSON.stringify({ error: `User is not authenticated, acess token : ${JSON.stringify(session)}` }), { status: 401 });
   }
 
-  const accessToken = session.provider_token;
+  const accessToken = session.access_token;
 
   try {
     const response = await axios({
