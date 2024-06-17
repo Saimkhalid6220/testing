@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
   const { data: { session } } = await supabase.auth.getSession();
 
   if (!session || !session.provider_token) {
-    return new NextResponse(JSON.stringify({ error: `User is not authenticated, acess token : ${session}` }), { status: 401 });
+    return new NextResponse(JSON.stringify({ error: `User is not authenticated, acess token : ${JSON.stringify(session)}` }), { status: 401 });
   }
 
   const accessToken = session.provider_token;
