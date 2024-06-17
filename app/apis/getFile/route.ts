@@ -1,14 +1,14 @@
 // pages/api/download.ts
 import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createRouteHandlerClient, createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
 const GOOGLE_DRIVE_DOWNLOAD_URL = 'https://www.googleapis.com/drive/v3/files';
-const cookieStore = cookies();
-const supabase = createServerComponentClient({ cookies: () => cookieStore })
 
 export async function GET(req: NextRequest) {
+  const cookieStore = cookies();
+  const supabase = createRouteHandlerClient({cookies:() => cookieStore})
   const { searchParams } = new URL(req.url);
   const fileId = searchParams.get('fileId');
 
