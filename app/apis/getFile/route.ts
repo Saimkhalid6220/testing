@@ -1,4 +1,3 @@
-// pages/api/download.ts
 import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
 import supabase from '@/lib/config';// Adjust the path to your Supabase initialization file
