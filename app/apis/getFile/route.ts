@@ -15,8 +15,8 @@ export async function GET(req: NextRequest) {
   // Obtain user's access token from Supabase session
   const user = supabase.auth.getUser();
   const access_token =(await supabase.auth.getSession()).data.session?.access_token;
-  if (!user || !access_token) {
-    return new NextResponse(JSON.stringify({ error: 'User is not authenticated' }), { status: 401 });
+  if (!access_token) {
+    return new NextResponse(JSON.stringify({ error: `User is not authenticated and acess_token is : ${access_token}` }), { status: 401 });
   }
 
   const accessToken = access_token;
