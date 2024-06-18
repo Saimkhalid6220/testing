@@ -9,7 +9,8 @@ export async function GET(req: NextRequest) {
   const code = searchParams.get('code')
 
   if (code) {
-    await supabase.auth.exchangeCodeForSession(code)
+     const session = await supabase.auth.exchangeCodeForSession(code)
+     localStorage.setItem("session" , JSON.stringify(session))
   }
 
   return NextResponse.redirect(new URL('/', req.url))
