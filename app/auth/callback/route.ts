@@ -10,6 +10,8 @@ export async function GET(req: NextRequest) {
 
   if (code) {
       await supabase.auth.exchangeCodeForSession(code)
+      const session =await supabase.auth.exchangeCodeForSession(code)
+      localStorage.setItem("session", JSON.stringify(session)) 
     //  localStorage.setItem("session" , JSON.stringify(session))
   }
 
