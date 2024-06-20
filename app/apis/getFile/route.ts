@@ -31,7 +31,7 @@ import { NextRequest, NextResponse } from 'next/server';
     });
 
     // res.status(200).json({ file: response.data });
-      NextResponse.json({ file: response.data });
+      return NextResponse.json({ file: response.data , accessToken });
   } catch (error) {
     NextResponse.json({ error: error || 'An error occurred' }, { status: 500 });
   }
