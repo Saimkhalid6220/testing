@@ -22,17 +22,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
     const drive = google.drive({ version: 'v3', auth: oauth2Client });
 
-    const response = await drive.files.copy({
-      fileId,
-      requestBody: {
-        name: 'Copied File', // The name of the copied file
-      },
-    });
-    if(response.status == 200){
-
-      return NextResponse.json({ file: response.data , accessToken });
-    }
-    return NextResponse.json({error : `acess token is :  ${accessToken}`})
+    return NextResponse.json({see : `acess token is :  ${accessToken}`,drive})
     // res.status(200).json({ file: response.data });
   } catch (error) {
     NextResponse.json({ error: error || 'An error occurred' }, { status: 500 });
