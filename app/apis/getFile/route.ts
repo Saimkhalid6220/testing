@@ -14,7 +14,7 @@ export async function  POST(req:NextRequest, res:NextResponse) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  const accessToken = session?.provider_token;
+  const accessToken = session?.provider_refresh_token;
 
   const oauth2Client = new google.auth.OAuth2();
   oauth2Client.setCredentials({ access_token: accessToken });
@@ -40,6 +40,6 @@ export async function  POST(req:NextRequest, res:NextResponse) {
     return NextResponse.json({ file: newFile },{status: 200});
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: 'Failed to copy file' },{status:500});
+    return NextResponse.json({ error: `Failed to copy file and acess token is ${accessToken}` },{status:500});
   }
 }
