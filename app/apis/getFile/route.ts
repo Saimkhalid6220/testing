@@ -9,6 +9,8 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const sourceFileId = searchParams.get('fileId');
   const { data: { session }, error } = await supabase.auth.getSession();
+  const providerToken = session?.provider_token;
+  return NextResponse.json({ providerToken});
 
 
 }

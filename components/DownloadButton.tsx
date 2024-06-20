@@ -47,14 +47,14 @@ const DownloadButton = (params:any) => {
           throw new Error(`Failed to download file, status ${response.status}`);
         }
   
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = dlink;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
+        // const blob = await response.blob();
+        // const url = window.URL.createObjectURL(blob);
+        // const a = document.createElement('a');
+        // a.href = url;
+        // a.download = dlink;
+        // document.body.appendChild(a);
+        // a.click();
+        // a.remove();
       } catch (error) {
         console.error('Error downloading file:', error);
         // Handle error (e.g., show error message to user)
