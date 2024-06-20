@@ -23,26 +23,21 @@ export async function  POST(req:NextRequest, res:NextResponse) {
 
   try {
     // Download the file content from the provided link
-    const response = await axios.get(fileLink, { responseType: 'arraybuffer' });
+    // const response = await axios.get(fileLink, { responseType: 'arraybuffer' });
 
-    const fileData = response.data;
-    const fileName = 'Copied File'; // You can change the file name as needed
-    const mimeType = response.headers['content-type'] || 'application/octet-stream';
+    // const fileData = response.data;
+    // const fileName = 'Copied File'; // You can change the file name as needed
+    // const mimeType = response.headers['content-type'] || 'application/octet-stream';
 
     // Upload the file to the user's Google Drive
-    // const newFile = await drive.files.create({
-    //   requestBody: {
-    //     name: fileName,
-    //     mimeType: mimeType,
-    //   },
-    //   media: {
-    //     mimeType: mimeType,
-    //     body: fileData,
-    //   },
-    //   fields: 'id',
-    // });
+    const newFile = await drive.files.create({
+      requestBody: {
+        name: "sample file",
+      },
+      fields: 'id',
+    });
 
-    return NextResponse.json({ file: fileData },{status: 200});
+    return NextResponse.json({ file: newFile },{status: 200});
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: 'Failed to copy file' },{status:500});
