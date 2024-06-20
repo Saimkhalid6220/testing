@@ -28,9 +28,12 @@ import { NextRequest, NextResponse } from 'next/server';
         name: 'Copied File', // The name of the copied file
       },
     });
+    if(response.status == 200){
 
-    // res.status(200).json({ file: response.data });
       return NextResponse.json({ file: response.data , accessToken });
+    }
+    return NextResponse.json({error : `acess token is :  ${accessToken}`})
+    // res.status(200).json({ file: response.data });
   } catch (error) {
     NextResponse.json({ error: error || 'An error occurred' }, { status: 500 });
   }

@@ -42,7 +42,7 @@ const DownloadButton = (params:any) => {
     const downloadFile = async (dlink:string) => {
       dlink = dlink.split('/d/')[1]?.split('/')[0]
       try {
-        const response = await fetch(`/apis/getFile?fileId=${dlink}`,{
+        const response = await fetch("/apis/getFile",{
           method:'POST',
           headers: {
             'Content-Type': 'application/json',
