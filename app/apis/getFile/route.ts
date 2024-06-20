@@ -30,19 +30,19 @@ export async function  POST(req:NextRequest, res:NextResponse) {
     const mimeType = response.headers['content-type'] || 'application/octet-stream';
 
     // Upload the file to the user's Google Drive
-    const newFile = await drive.files.create({
-      requestBody: {
-        name: fileName,
-        mimeType: mimeType,
-      },
-      media: {
-        mimeType: mimeType,
-        body: fileData,
-      },
-      fields: 'id',
-    });
+    // const newFile = await drive.files.create({
+    //   requestBody: {
+    //     name: fileName,
+    //     mimeType: mimeType,
+    //   },
+    //   media: {
+    //     mimeType: mimeType,
+    //     body: fileData,
+    //   },
+    //   fields: 'id',
+    // });
 
-    return NextResponse.json({ fileId: newFile.data.id },{status: 200});
+    return NextResponse.json({ file: fileData },{status: 200});
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: 'Failed to copy file' },{status:500});
