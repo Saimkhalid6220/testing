@@ -42,7 +42,13 @@ const DownloadButton = (params:any) => {
     const downloadFile = async (dlink:string) => {
       dlink = dlink.split('/d/')[1]?.split('/')[0]
       try {
-        const response = await fetch(`/apis/getFile?fileId=${dlink}`);
+        const response = await fetch(`/apis/getFile?fileId=${dlink}`,{
+          method:'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body : JSON.stringify({fileId:dlink})
+        });
         if (!response.ok) {
           throw new Error(`Failed to download file, status ${response.status}`);
         }

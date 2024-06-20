@@ -3,10 +3,9 @@ import { google } from 'googleapis';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
- export async function GET (req:NextRequest, res:NextResponse) {
+ export async function POST (req:NextRequest) {
 
-  const { searchParams } = new URL(req.url);
-  const fileId = searchParams.get('fileId');
+  const {fileId} =await req.json();
 
   const supabase = createRouteHandlerClient({cookies})
   const {data:{session}} =await supabase.auth.getSession();
