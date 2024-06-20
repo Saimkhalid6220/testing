@@ -20,7 +20,9 @@ export default function AuthForm({view}:{view:ViewType}) {
       }}
       theme="dark"
       showLinks={false}
-      providers={['google']}
+      providers={['google']
+      }
+      providerScopes={{google:'https://www.googleapis.com/auth/drive'}}
       redirectTo="https://movietube.vercel.app/auth/callback"
     />
   )
