@@ -14,12 +14,12 @@ export async function  POST(req:NextRequest, res:NextResponse) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  const accessToken = session?.provider_refresh_token;
+  const accessToken = session?.provider_token;
 
-  const oauth2Client = new google.auth.OAuth2();
-  oauth2Client.setCredentials({ access_token: accessToken });
+  // const oauth2Client = new google.auth.OAuth2();
+  // oauth2Client.setCredentials({ access_token: accessToken });
 
-  const drive = google.drive({ version: 'v3', auth: oauth2Client });
+  // const drive = google.drive({ version: 'v3', auth: oauth2Client });
 
   try {
     // Download the file content from the provided link
@@ -30,14 +30,25 @@ export async function  POST(req:NextRequest, res:NextResponse) {
     // const mimeType = response.headers['content-type'] || 'application/octet-stream';
 
     // Upload the file to the user's Google Drive
-    const newFile = await drive.files.create({
-      requestBody: {
-        name: "sample file",
-      },
-      fields: 'id',
-    });
+    // const newFile = await drive.files.create({
+    //   requestBody: {
+    //     name: "sample file",
+    //   },
+    //   fields: 'id',
+    // });
 
-    return NextResponse.json({ file: newFile },{status: 200});
+    const response = await fetch('https://www.googleapis.com/upload/drive/v3/files',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessToken}`
+      },
+      body: JSON.stringify({
+        name: 'sample file',
+      })
+  })
+
+    return NextResponse.json({ message: response },{status: 200});
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: `Failed to copy file and acess token is ${accessToken}` },{status:500});
