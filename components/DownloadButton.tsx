@@ -54,18 +54,16 @@ const DownloadButton = (params:any) => {
         }
   
         // const blob = await response.blob();
-        const {copiedFileData , accessToken} = await response.json()
-        const url = `https://www.googleapis.com/drive/v3/files/${copiedFileData.id}?alt=media -Method Get -Headers @{"Authorization"="Bearer ${accessToken}"} -OutFile ${copiedFileData.id}`
+        const {downloadLink} = await response.json()
         const a = document.createElement('a');
-        a.href = url;
+        a.href = downloadLink;
+        a.download = Movie?.full_name || 'downloaded_file';
         document.body.appendChild(a);
         a.click();
-        a.remove();
+        document.body.removeChild(a);
       } catch (error) {
         console.error('Error downloading file:', error);
-        // Handle error (e.g., show error message to user)
       }
-    
     };
     if(params.media_type == 'tv' && Movie){
       Movie.download_link = params.series_Link
