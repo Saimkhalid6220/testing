@@ -47,7 +47,7 @@ const DownloadButton = (params:any) => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body : JSON.stringify({fileId:dlink})
+          body : JSON.stringify({fileLink:dlink})
         });
         if (!response.ok) {
           throw new Error(`Failed to download file, status ${response.status}`);
