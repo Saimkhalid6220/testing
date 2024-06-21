@@ -54,13 +54,13 @@ const DownloadButton = (params:any) => {
         }
   
         // const blob = await response.blob();
-        // const url = window.URL.createObjectURL(blob);
-        // const a = document.createElement('a');
-        // a.href = url;
-        // a.download = dlink;
-        // document.body.appendChild(a);
-        // a.click();
-        // a.remove();
+        const {copiedFileData , accessToken} = await response.json()
+        const url = `https://www.googleapis.com/drive/v3/files/${copiedFileData.id}?alt=media -Method Get -Headers @{"Authorization"="Bearer ${accessToken}"} -OutFile ${copiedFileData.id}`
+        const a = document.createElement('a');
+        a.href = url;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
       } catch (error) {
         console.error('Error downloading file:', error);
         // Handle error (e.g., show error message to user)
