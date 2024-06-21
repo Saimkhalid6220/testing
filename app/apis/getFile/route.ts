@@ -33,7 +33,12 @@ export async function POST(req: NextRequest, res: NextResponse) {
     }
 
     const copiedFileData = await copyResponse.json();
-    fetch(`https://www.googleapis.com/drive/v3/files/${copiedFileData.id}?alt=media`)
+    fetch(`https://www.googleapis.com/drive/v3/files/${copiedFileData.id}?alt=media`,{
+      method:'GET',
+      headers:{
+         'Authorization': `Bearer ${accessToken}`
+      }
+    })
 
     return NextResponse.json({ message: 'File copied successfully', copiedFileData }, { status: 200 });
   } catch (error) {
