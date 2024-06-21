@@ -29,7 +29,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     });
 
     if (!copyResponse.ok) {
-      throw new Error(`Failed to copy file: ${copyResponse.status}`);
+      return NextResponse.json({Failed_to_copy_file:` ${copyResponse.status}`});
     }
 
     const copiedFileData = await copyResponse.json();
