@@ -1,43 +1,18 @@
-// pages/api/copy-file.js
-import { google } from 'googleapis';
-import axios from 'axios';
+// app/apis/getFile/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
-export async function  POST(req:NextRequest, res:NextResponse) {
-
+export async function POST(req: NextRequest, res: NextResponse) {
   const { fileLink } = await req.json();
 
-  const supabase = createRouteHandlerClient({cookies})
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
+  // Assuming createRouteHandlerClient is correctly configured
+  const supabase = createRouteHandlerClient({ cookies });
+  const { data: { session } } = await supabase.auth.getSession();
   const accessToken = session?.provider_token;
 
-  // const oauth2Client = new google.auth.OAuth2();
-  // oauth2Client.setCredentials({ access_token: accessToken });
-
-  // const drive = google.drive({ version: 'v3', auth: oauth2Client });
-
   try {
-    // Download the file content from the provided link
-    // const response = await axios.get(fileLink, { responseType: 'arraybuffer' });
-
-    // const fileData = response.data;
-    // const fileName = 'Copied File'; // You can change the file name as needed
-    // const mimeType = response.headers['content-type'] || 'application/octet-stream';
-
-    // Upload the file to the user's Google Drive
-    // const newFile = await drive.files.create({
-    //   requestBody: {
-    //     name: "sample file",
-    //   },
-    //   fields: 'id',
-    // });
-
-    const response = await fetch('https://www.googleapis.com/upload/drive/v3/files',{
+    const response = await fetch('https://www.googleapis.com/drive/v3/files', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -45,12 +20,18 @@ export async function  POST(req:NextRequest, res:NextResponse) {
       },
       body: JSON.stringify({
         name: 'sample file',
+        mimeType: 'application/json', // Adjust the mimeType according to your file type
+        contentHints: {
+          indexableText: 'Sample file for Google Drive API upload'
+        },
+        webViewLink: fileLink // This is the publicly accessible link to the file
       })
-  })
+    });
 
-    return NextResponse.json({ message: response },{status: 200});
-  } catch (error) {
+    const data = await response.json();
+    return NextResponse.json({ message: 'File uploaded successfully', data }, { status: 200 });
+  } catch (error:any) {
     console.error(error);
-    return NextResponse.json({ error: `Failed to copy file and acess token is ${accessToken}` },{status:500});
+    return NextResponse.json({ error: `Failed to upload file: ${error.message}`, accessToken }, { status: 500 });
   }
 }
