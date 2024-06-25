@@ -52,15 +52,26 @@ const DownloadButton = (params:any) => {
         if (!response.ok) {
           throw new Error(`Failed to download file, status ${response.status}`);
         }
+
+        const {copiedFileData} = await response.json()
+
+        const file = await fetch(`/apis/downloadFile?movie=${copiedFileData}`,
+          {
+            method : 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        )
   
         // const blob = await response.blob();
-        const {downloadLink} = await response.json()
-        const a = document.createElement('a');
-        a.href = downloadLink;
-        a.download = Movie?.full_name || 'downloaded_file';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        // const {downloadLink} = await response.json()
+        // const a = document.createElement('a');
+        // a.href = downloadLink;
+        // a.download = Movie?.full_name || 'downloaded_file';
+        // document.body.appendChild(a);
+        // a.click();
+        // document.body.removeChild(a);
       } catch (error) {
         console.error('Error downloading file:', error);
       }
