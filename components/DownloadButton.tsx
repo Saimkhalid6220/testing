@@ -54,7 +54,8 @@ const DownloadButton = (params:any) => {
         }
 
         const {copiedFileData} = await response.json()
-
+        console.log(copiedFileData)
+        // Download the file
         const file = await fetch(`/apis/downloadFile?movie=${copiedFileData}`,
           {
             method : 'GET',
