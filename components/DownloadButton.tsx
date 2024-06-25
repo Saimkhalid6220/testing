@@ -64,14 +64,18 @@ const DownloadButton = (params:any) => {
           }
         )
   
-        // const blob = await response.blob();
-        // const {downloadLink} = await response.json()
-        // const a = document.createElement('a');
-        // a.href = downloadLink;
-        // a.download = Movie?.full_name || 'downloaded_file';
-        // document.body.appendChild(a);
-        // a.click();
-        // document.body.removeChild(a);
+        if (file.ok) {
+          const blob = await file.blob();
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'filename.ext';  // Set your file name
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        } else {
+          console.error('Download failed');
+        }
       } catch (error) {
         console.error('Error downloading file:', error);
       }
