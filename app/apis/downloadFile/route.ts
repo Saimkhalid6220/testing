@@ -17,10 +17,7 @@ export async function GET(req: NextRequest) {
   }
 
   const { searchParams } = new URL(req.url);
-  const file:any = searchParams.get('movie');
-  const jsonFile = JSON.parse(file);
-  const fileId = jsonFile.id
-
+  const fileId:any = searchParams.get('id');
   if (!fileId) {
     return NextResponse.json({ error: 'File ID is required' }, { status: 400 });
   }
