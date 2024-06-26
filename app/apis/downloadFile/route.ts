@@ -29,13 +29,13 @@ export async function GET(req: NextRequest) {
 
   try {
     // Get file metadata
-    const fileMetadata = await drive.files.get({ fileId, fields: 'name' });
-    const fileName = fileMetadata.data.name || 'download';
+    const fileMetadata = await drive.files.get({ fileId, fields: 'webContentLink' });
+    const downloadLink = fileMetadata.data.webContentLink ;
 
-    // Generate file download link
-    const downloadLink = `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&access_token=${accessToken}`;
+    if(downloadLink){
 
-    return NextResponse.redirect(downloadLink, 302);
+      return NextResponse.redirect(downloadLink, 302);
+    }
   } catch (error) {
     console.error('API error', error);
     return NextResponse.json({ error: 'Failed to get file' }, { status: 500 });
