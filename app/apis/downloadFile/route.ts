@@ -4,12 +4,13 @@ import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
 export async function GET(req: NextRequest) {
-  const supabase  = createRouteHandlerClient({cookies});
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
 
-  const accessToken = session?.provider_token
+const supabase = createRouteHandlerClient({cookies})
+const {
+  data: { session },
+} = await supabase.auth.getSession();
+
+const accessToken = session?.provider_token;
 
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

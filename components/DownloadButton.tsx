@@ -56,27 +56,12 @@ const DownloadButton = (params:any) => {
         const {copiedFileData} = await response.json()
         const fileId:string = copiedFileData.id;
         // Download the file
-        const file = await fetch(`/apis/downloadFile?id=${fileId}`,
-          {
-            method : 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        )
-  
-        if (file.ok) {
-          const blob = await file.blob();
-          const url = window.URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = ''; // The filename will be set by the Content-Disposition header
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-        } else {
-          console.error('Download failed');
-        }
+        const link = document.createElement('a');
+        link.href = `/apis/downloadFile?id=${fileId}`;
+        link.download = ''; // The filename will be set by the Content-Disposition header
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       } catch (error) {
         console.error('Error downloading file:', error);
       }
