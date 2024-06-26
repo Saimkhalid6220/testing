@@ -57,11 +57,11 @@ const DownloadButton = (params:any) => {
         const fileId:string = copiedFileData.id;
         // Download the file
         const link = document.createElement('a');
-        link.href = `/apis/downloadFile?id=${fileId}`;
-        link.download = ''; // The filename will be set by the Content-Disposition header
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+    link.href = `/apis/downloadFile?id=${fileId}`;
+    link.download = ''; // The filename will be set by the Content-Disposition header in the redirect response
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
       } catch (error) {
         console.error('Error downloading file:', error);
       }

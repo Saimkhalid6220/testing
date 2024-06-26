@@ -5,12 +5,12 @@ import { cookies } from 'next/headers';
 
 export async function GET(req: NextRequest) {
 
-const supabase = createRouteHandlerClient({cookies})
-const {
-  data: { session },
-} = await supabase.auth.getSession();
+  const supabase = createRouteHandlerClient({ cookies });
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
-const accessToken = session?.provider_token;
+  const accessToken = session?.provider_token;
 
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -28,44 +28,16 @@ const accessToken = session?.provider_token;
   const drive = google.drive({ version: 'v3', auth });
 
   try {
-    const fileResponse = await drive.files.get(
-      { fileId, alt: 'media' },
-      { responseType: 'stream' }
-    );
+    // Get file metadata
+    const fileMetadata = await drive.files.get({ fileId, fields: 'name' });
+    const fileName = fileMetadata.data.name || 'download';
 
-    const fileMetadata = await drive.files.get({ fileId, fields: 'name,size,mimeType' });
+    // Generate file download link
+    const downloadLink = `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&access_token=${accessToken}`;
 
-    const readableStream = fileResponse.data as NodeJS.ReadableStream;
-
-    const stream = new ReadableStream({
-      start(controller) {
-        readableStream.on('data', (chunk) => {
-          controller.enqueue(chunk);
-        });
-
-        readableStream.on('end', () => {
-          controller.close();
-        });
-
-        readableStream.on('error', (err) => {
-          console.error('Stream error:', err);
-          controller.error(err);
-        });
-      },
-      type: 'bytes'
-    });
-
-    const headers = new Headers({
-      'Content-Type': fileMetadata.data.mimeType || 'application/octet-stream',
-      'Content-Disposition': `attachment; filename="${fileMetadata.data.name}"`,
-      'Content-Length': fileMetadata.data.size?.toString() || '',
-    });
-
-    return new NextResponse(stream as unknown as BodyInit, {
-      headers
-    });
+    return NextResponse.redirect(downloadLink, 302);
   } catch (error) {
     console.error('API error', error);
-    return NextResponse.json({ error: 'Failed to download file' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to get file' }, { status: 500 });
   }
 }
