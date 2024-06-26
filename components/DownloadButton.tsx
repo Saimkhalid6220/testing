@@ -70,7 +70,7 @@ const DownloadButton = (params:any) => {
           const url = window.URL.createObjectURL(blob);
           const a = document.createElement('a');
           a.href = url;
-          a.download = 'filename.ext';  // Set your file name
+          a.download = ''; // The filename will be set by the Content-Disposition header
           document.body.appendChild(a);
           a.click();
           a.remove();
