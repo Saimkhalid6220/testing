@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://movietube.vercel.app/sitemap.xml
+Host: https://movietube.vercel.app
