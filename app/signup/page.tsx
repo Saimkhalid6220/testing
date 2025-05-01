@@ -1,4 +1,9 @@
 import AuthForm from "@/components/auth-form"
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Signup',
+}
 
 const Signup = () => {
   return (
